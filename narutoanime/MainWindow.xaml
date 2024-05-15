@@ -20,9 +20,9 @@
 
             <TextBlock Text="Modern UI" Foreground="White" FontSize="22" VerticalAlignment="Stretch" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" TextAlignment="Left" Padding="20" Grid.ColumnSpan="2"></TextBlock>
             <StackPanel Grid.Row="1">
-                <RadioButton Content="Home" Style="{StaticResource MenuButtonTheme}"></RadioButton>
-                <RadioButton Style="{StaticResource MenuButtonTheme}" Content="Users"></RadioButton>
-                <RadioButton Style="{StaticResource MenuButtonTheme}" Content="Close"></RadioButton>
+                <RadioButton Command="{Binding openHome}" Content="Home" Style="{StaticResource MenuButtonTheme}"></RadioButton>
+                <RadioButton Command="{Binding openUsers}" Style="{StaticResource MenuButtonTheme}" Content="Users"></RadioButton>
+                <RadioButton Click="RadioButton_Click" Style="{StaticResource MenuButtonTheme}" Content="Close"></RadioButton>
             </StackPanel>
             <ContentControl Content="{Binding CurrentView}" Grid.Row="1" Grid.Column="1"></ContentControl>
         </Grid>

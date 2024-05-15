@@ -31,5 +31,10 @@ namespace narutoanime
         {
             this.DragMove();
         }
+
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

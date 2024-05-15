@@ -28,11 +28,6 @@ namespace narutoanime.ViewModel
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-		private void OnPropertyChanged([CallerMemberName]string name = null)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-		}
-
         public RelayCommand openHome { get; }
 		public RelayCommand openUsers { get; }
 
@@ -45,6 +40,10 @@ namespace narutoanime.ViewModel
 			openUsers = new RelayCommand(X=> CurrentView = usersView);
 
 			CurrentView = homeView;
+        }
+        private void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }
