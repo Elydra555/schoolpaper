@@ -1,19 +1,7 @@
 ﻿using ConsoleApp2.Data;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using static ConsoleApp2.Models.People;
 
 namespace schoolPaper.View
@@ -23,69 +11,70 @@ namespace schoolPaper.View
     /// </summary>
     public partial class DataView : UserControl
     {
-        private Context _context;
+        private readonly Context _context;
+        private User _selectedUser;
 
         public DataView()
         {
             InitializeComponent();
             _context = new Context();
-            _context.ConnectionString = @"Server=(localdb)\MsSqlLocalDb;Database=Benedek;Trusted_Connection=true";
-            //LoadData();
+            LoadData();
         }
 
-        //private void LoadData()
-        //{
-        //    List<User> people = _context.User.ToList();
-        //    foreach (var person in people)
-        //    {
-        //        listBox.Items.Add(person.FirstName);
-        //    }
-        //}
+        private void LoadData()
+        {
+            var users = _context.User.ToList();
+            listBox.ItemsSource = users;
+        }
 
-        //private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    if (listBox.SelectedIndex != -1)
-        //    {
-        //        string selectedFirstName = (string)listBox.SelectedItem;
-        //        User selectedPerson = _context.User.FirstOrDefault(p => p.FirstName == selectedFirstName);
-        //        if (selectedPerson != null)
-        //        {
-        //            textBox.Text = $"Name: {selectedPerson.FirstName} {selectedPerson.LastName}\nEmail: {selectedPerson.Email}";
-        //        }
-        //    }
-        //}
+        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (listBox.SelectedIndex != -1)
+            {
+                _selectedUser = (User)listBox.SelectedItem;
+                nameTextBox.Text = _selectedUser.Name;
+                ageTextBox.Text = _selectedUser.Age;
+                cityTextBox.Text = _selectedUser.City;
+                positionTextBox.Text = _selectedUser.Position;
+                hobbyTextBox.Text = _selectedUser.Hobby;
+            }
+        }
 
-        //private void UpdateButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        //{
-        //    if (listBox.SelectedIndex != -1)
-        //    {
-        //        string selectedFirstName = (string)listBox.SelectedItem;
-        //        User selectedPerson = _context.User.FirstOrDefault(p => p.FirstName == selectedFirstName);
-        //        if (selectedPerson != null)
-        //        {
-        //            // Itt kezeld az Update műveletet
-        //            MessageBox.Show("Update művelet végrehajtva!");
-        //        }
-        //    }
-        //}
+        private async void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (_selectedUser != null)
+            {
+                _selectedUser.Name = nameTextBox.Text;
+                _selectedUser.Age = ageTextBox.Text;
+                _selectedUser.City = cityTextBox.Text;
+                _selectedUser.Position = positionTextBox.Text;
+                _selectedUser.Hobby = hobbyTextBox.Text;
 
-        //private void DeleteButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        //{
-        //    if (listBox.SelectedIndex != -1)
-        //    {
-        //        string selectedFirstName = (string)listBox.SelectedItem;
-        //        Person selectedPerson = _context.People.FirstOrDefault(p => p.FirstName == selectedFirstName);
-        //        if (selectedPerson != null)
-        //        {
-        //            // Itt kezeld a Delete műveletet
-        //            MessageBox.Show("Delete művelet végrehajtva!");
-        //            _context.People.Remove(selectedPerson);
-        //            _context.SaveChanges();
-        //            listBox.Items.Remove(selectedFirstName);
-        //            textBox.Clear();
-        //        }
-        //    }
-        //}
+                _context.User.Update(_selectedUser);
+                await _context.SaveChangesAsync();
+                LoadData();
+            }
+        }
+
+        private async void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (_selectedUser != null)
+            {
+                _context.User.Remove(_selectedUser);
+                await _context.SaveChangesAsync();
+                LoadData();
+                ClearFields();
+            }
+        }
+
+        private void ClearFields()
+        {
+            nameTextBox.Text = "";
+            ageTextBox.Text = "";
+            cityTextBox.Text = "";
+            positionTextBox.Text = "";
+            hobbyTextBox.Text = "";
+        }
     }
 }
 

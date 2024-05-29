@@ -6,21 +6,48 @@
              xmlns:local="clr-namespace:schoolPaper.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <ListBox x:Name="listBox" Grid.Column="0" Margin="10" SelectionChanged="listBox_SelectionChanged"/>
-        <Grid Grid.Column="1" Margin="10">
+    <Border Background="#baed91" CornerRadius="20">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <TextBox x:Name="textBox" Grid.Row="0" Margin="0 0 0 10" IsReadOnly="True"/>
-            <Button Content="Update" Grid.Row="1" Margin="0 0 0 10" Click="UpdateButton_Click"/>
-            <Button Content="Delete" Grid.Row="2" Margin="0 0 0 10" Click="DeleteButton_Click"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Munkatárak felvétele" FontSize="30" TextAlignment="Center" Grid.ColumnSpan="2" Padding="70,20,0,20"/>
+
+            <ScrollViewer Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto">
+                <ListBox x:Name="listBox" VerticalAlignment="Center" Margin="0,0,20,0"
+                         DisplayMemberPath="Name" SelectionChanged="listBox_SelectionChanged"/>
+            </ScrollViewer>
+
+            <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel VerticalAlignment="Center" Margin="0,0,20,0">
+                    <TextBlock Text="Name" FontSize="24" Margin="20"/>
+                    <TextBox x:Name="nameTextBox" Background="#f8b88b" FontSize="24" Padding="0,10" Margin="10"/>
+
+                    <TextBlock Text="Age" FontSize="24" Margin="20"/>
+                    <TextBox x:Name="ageTextBox" Background="#f8b88b" FontSize="24" Padding="0,10" Margin="10"/>
+
+                    <TextBlock Text="City" FontSize="24" Margin="20"/>
+                    <TextBox x:Name="cityTextBox" Background="#f8b88b" FontSize="24" Padding="0,10" Margin="10"/>
+
+                    <TextBlock Text="Position" FontSize="24" Margin="20"/>
+                    <TextBox x:Name="positionTextBox" Background="#f8b88b" FontSize="24" Padding="0,10" Margin="10"/>
+
+                    <TextBlock Text="Hobby" FontSize="24" Margin="20"/>
+                    <TextBox x:Name="hobbyTextBox" Background="#f8b88b" FontSize="24" Padding="0,10" Margin="10"/>
+                </StackPanel>
+            </ScrollViewer>
+
+            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                <Button Click="btnSave_Click" Background="Red" Content="Save" FontSize="24" Padding="0,10" Width="150" Margin="20"/>
+                <Button Click="btnDelete_Click" Background="Red" Content="Delete" FontSize="24" Padding="0,10" Width="150" Margin="20"/>
+            </StackPanel>
         </Grid>
-    </Grid>
+    </Border>
 </UserControl>

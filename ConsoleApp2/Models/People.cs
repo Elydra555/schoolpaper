@@ -1,45 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp2.Models
 {
-    public class People
+    public class User : INotifyPropertyChanged
     {
-        public class User
+        public int Id { get; set; }
+
+        private string name;
+        public string Name
         {
-            [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Age { get; set; }
-            public string City { get; set; }
-            public string Position { get; set; }
-            public string Hobby { get; set; }
+            get { return name; }
+            set { name = value; OnPropertyChanged(); }
+        }
 
-            public User()
-            {
-            }
+        private string age;
+        public string Age
+        {
+            get { return age; }
+            set { age = value; OnPropertyChanged(); }
+        }
 
-            public User(string sor)
-            {
-                string[] t = sor.Split(';');
-                Name = t[0];
-                Age = t[1];
-                City = t[2];
-                Position = t[3];
-                Hobby = t[4];
-            }
+        private string city;
+        public string City
+        {
+            get { return city; }
+            set { city = value; OnPropertyChanged(); }
+        }
 
-            public override string? ToString()
-            {
-                return $"{Name}, neve a(z) {City} városban lakik, {Position}-ként dolgozik, {Age} éves, hobbija: {Hobby}.";
-            }
+        private string position;
+        public string Position
+        {
+            get { return position; }
+            set { position = value; OnPropertyChanged(); }
+        }
+
+        private string hobby;
+        public string Hobby
+        {
+            get { return hobby; }
+            set { hobby = value; OnPropertyChanged(); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }
