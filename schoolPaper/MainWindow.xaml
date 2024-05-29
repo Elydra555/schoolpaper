@@ -22,7 +22,7 @@
             <StackPanel Grid.Row="1">
                 <RadioButton Command="{Binding openHOme}" Style="{StaticResource MenuButtonTheme}" Content="Task 1"></RadioButton>
                 <RadioButton Command="{Binding TaskOneView}" Style="{StaticResource MenuButtonTheme}" Content="Task 2"></RadioButton>
-                <RadioButton Command="{Binding openHOme}" Style="{StaticResource MenuButtonTheme}" Content="Task 3"></RadioButton>
+                <RadioButton Command="{Binding DataView}" Style="{StaticResource MenuButtonTheme}" Content="Task 3"></RadioButton>
                 <RadioButton Click="RadioButton_Click" Style="{StaticResource MenuButtonTheme}" Content="Close"></RadioButton>
             </StackPanel>
             <ContentControl Content="{Binding CurrentView}" Grid.Row="1" Grid.Column="1"></ContentControl>

@@ -25,19 +25,23 @@ namespace schoolPaper.ViewModel
 
 		HomeView homeView;
 		TaskOneView taskOneView;
+		DataView dataView;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public RelayCommand openHOme { get; }
         public RelayCommand TaskOneView { get; }
+        public RelayCommand DataView { get; }
 
         public MainViewModel()
         {
             homeView = new HomeView();
             taskOneView = new TaskOneView();
+            dataView = new DataView();
 
             openHOme = new RelayCommand(X => CurrentView = homeView);
             TaskOneView = new RelayCommand(X=> CurrentView = taskOneView);
+            DataView = new RelayCommand(X=> CurrentView = dataView);
 
 			CurrentView = homeView;
         }
