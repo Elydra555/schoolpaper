@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="MenuButtonTheme" BasedOn="{StaticResource {x:Type ToggleButton}}" TargetType="RadioButton">
-        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="Foreground" Value="LightGray"></Setter>
         <Setter Property="FontSize" Value="15"></Setter>
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="Height" Value="50"></Setter>
@@ -17,7 +17,10 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="#22202F"></Setter>
+                <Setter Property="Background" Value="#10706f"></Setter>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#00c3ff"></Setter>
             </Trigger>
         </Style.Triggers>
     </Style>

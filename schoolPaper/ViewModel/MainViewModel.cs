@@ -1,5 +1,5 @@
-﻿using narutoanime.Command;
-using narutoanime.View;
+﻿using schoolPaper.Command;
+using schoolPaper.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace narutoanime.ViewModel
+namespace schoolPaper.ViewModel
 {
     public class MainViewModel : INotifyPropertyChanged
     {
@@ -24,20 +24,20 @@ namespace narutoanime.ViewModel
 		}
 
 		HomeView homeView;
-		UsersView usersView;
+		TaskOneView taskOneView;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public RelayCommand openHome { get; }
-		public RelayCommand openUsers { get; }
+        public RelayCommand openHOme { get; }
+        public RelayCommand TaskOneView { get; }
 
         public MainViewModel()
-        { 
-			homeView = new HomeView();
-			usersView = new UsersView();
+        {
+            homeView = new HomeView();
+            taskOneView = new TaskOneView();
 
-			openHome = new RelayCommand(X=> CurrentView = homeView);
-			openUsers = new RelayCommand(X=> CurrentView = usersView);
+            openHOme = new RelayCommand(X => CurrentView = homeView);
+            TaskOneView = new RelayCommand(X=> CurrentView = taskOneView);
 
 			CurrentView = homeView;
         }

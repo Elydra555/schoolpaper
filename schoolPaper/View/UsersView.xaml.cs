@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace narutoanime.View
+namespace schoolPaper.View
 {
     /// <summary>
-    /// Interaction logic for HomeView.xaml
+    /// Interaction logic for TaskOneView.xaml
     /// </summary>
-    public partial class HomeView : UserControl
+    public partial class TaskOneView : UserControl
     {
-        public HomeView()
+        public TaskOneView()
         {
             InitializeComponent();
         }

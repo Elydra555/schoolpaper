@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace narutoanime.Command
+namespace schoolPaper.Command
 {
     public class RelayCommand : ICommand
     {
