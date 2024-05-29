@@ -29,7 +29,7 @@
 
             <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Height="30" Width="100" Margin="0, 15" Content="Login" Background="DarkOrange" Foreground="White"></Button>
-                <Button Height="30" Width="100" Margin="5, 15" Content="Cancel" Background="DeepSkyBlue"></Button>
+                <Button Height="30" Width="100" Margin="5, 15" Content="Cancel" Background="DeepSkyBlue" Command="{Binding openHOme}"></Button>
             </StackPanel>
             
         </Grid>
