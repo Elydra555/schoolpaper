@@ -7,6 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListBox x:Name="listBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="300" Margin="10"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="listBox" Grid.Column="0" Margin="10" SelectionChanged="listBox_SelectionChanged"/>
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="textBox" Grid.Row="0" Margin="0 0 0 10" IsReadOnly="True"/>
+            <Button Content="Update" Grid.Row="1" Margin="0 0 0 10" Click="UpdateButton_Click"/>
+            <Button Content="Delete" Grid.Row="2" Margin="0 0 0 10" Click="DeleteButton_Click"/>
+        </Grid>
     </Grid>
 </UserControl>
